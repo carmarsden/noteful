@@ -1,0 +1,14 @@
+.noteentry {
+    border: 1px black solid;
+    width: 100%;
+    padding: 20px;
+}
+
+.noteentry a {
+    color: black;
+    text-decoration: none;
+}
+
+.noteentry a:hover {
+    text-decoration: underline;
+}

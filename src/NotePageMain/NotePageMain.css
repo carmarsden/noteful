@@ -1,0 +1,9 @@
+main {
+    width: 67%;
+    padding: 20px;
+}
+
+.notecontent {
+    line-height: 120%;
+    color: #333333;
+}

@@ -1,0 +1,37 @@
+.sidebar {
+    width: 33%;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebaritem {
+    display: block;
+    border: 1px black solid;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+}
+
+.active {
+    background-color: lightblue;
+}
+
+.sidebaritem:hover, .sidebaritem:active {
+    font-weight: bold;
+}
+
+.addfolder {
+    border: 1px black solid;
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}

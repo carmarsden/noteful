@@ -1,0 +1,15 @@
+.sidebar {
+    width: 33%;
+}
+
+.backbutton {
+    display: block;
+    border: 1px black solid;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+}
