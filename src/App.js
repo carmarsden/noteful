@@ -2,6 +2,8 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import dummystore from './dummystore';
+import dummystore2 from './dummystore2';
+import NotesContext from './NotesContext';
 import Header from './Header/Header';
 import FoldersNav from './FoldersNav/FoldersNav';
 import FoldersMain from './FoldersMain/FoldersMain';
@@ -10,63 +12,53 @@ import NotePageMain from './NotePageMain/NotePageMain';
 
 class App extends React.Component {
     state = {
-        store: dummystore
+//        store: [],
+        store: dummystore2
     }
 
 
     render() {
         console.log(this.state.store)
+        const contextValue = {
+            store: this.state.store,
+        }
         return (
             <div className="App">
                 <Header />
-                <div className='appbody'>
-                    <>
-                        <Route 
-                            exact path='/'
-                            render={() => 
-                                <FoldersNav folderarray={this.state.store.folders}/>}
-                        />
-                        <Route 
-                            path='/folder/:folderid'
-                            render={({ match }) => 
-                                <FoldersNav 
-                                    folderarray={this.state.store.folders}
-                                    folderid={match.params.folderid}/>}
-                        />
-                        <Route 
-                            path='/note/:noteid'
-                            render={(props) => 
-                                <NotePageNav 
-                                    store={this.state.store}
-                                    noteid={props.match.params.noteid}
-                                    onGoBack={() => props.history.goBack()}/>
-                            }
-                        />
+                <NotesContext.Provider value={contextValue}>
+                    <div className='appbody'>
+                        <>
+                            <Route 
+                                exact path='/'
+                                component={FoldersNav}
+                            />
+                            <Route 
+                                path='/folder/:folderid'
+                                component={FoldersNav}
+                            />
+                            <Route 
+                                path='/note/:noteid'
+                                component={NotePageNav}
+                            />
 
-                    </>
-                    <>
-                        <Route 
-                            exact path='/'
-                            render={() => 
-                                <FoldersMain notearray={this.state.store.notes}/>}
-                        />
-                        <Route 
-                            path='/folder/:folderid'
-                            render={({ match }) => 
-                                <FoldersMain 
-                                    notearray={this.state.store.notes}
-                                    folderid={match.params.folderid}/>}
-                        />
-                        <Route 
-                            path='/note/:noteid'
-                            render={({ match }) => 
-                                <NotePageMain 
-                                    notearray={this.state.store.notes}
-                                    noteid={match.params.noteid}/>}
-                        />
+                        </>
+                        <>
+                            <Route 
+                                exact path='/'
+                                component={FoldersMain}
+                            />
+                            <Route 
+                                path='/folder/:folderid'
+                                component={FoldersMain}
+                            />
+                            <Route 
+                                path='/note/:noteid'
+                                component={NotePageMain}
+                            />
 
-                    </>
-                </div>
+                        </>
+                    </div>
+                </NotesContext.Provider>
             </div>
         );    
     }
