@@ -12,7 +12,6 @@ import NotePageMain from './NotePageMain/NotePageMain';
 
 class App extends React.Component {
     state = {
-        store: dummystore2,
         folders: dummystore2.folders,
         notes: dummystore2.notes,
         error: null,
@@ -27,7 +26,6 @@ class App extends React.Component {
             return res.json();
         })
         .then(resJson => {
-            console.log(resJson);
             this.setState({
                 folders: resJson
             })
@@ -46,7 +44,6 @@ class App extends React.Component {
             return res.json();
         })
         .then(resJson => {
-            console.log(resJson);
             this.setState({
                 notes: resJson
             })
@@ -58,13 +55,20 @@ class App extends React.Component {
         });
     }
 
+    handleDeleteNote = (noteId) => {
+        console.log(`now deleting note ${noteId}`);
+        const newNotes = this.state.notes.filter(note => note.id !== noteId)
+        this.setState({
+            notes: newNotes
+        })
+    }
 
     render() {
         console.log(this.state)
         const contextValue = {
-            store: this.state.store,
             folders: this.state.folders,
             notes: this.state.notes,
+            deleteNote: this.handleDeleteNote,
         }
         const error = this.state.error ? <div className='error'>{this.state.error}</div> : '';
 

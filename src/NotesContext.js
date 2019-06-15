@@ -4,7 +4,7 @@ import dummystore from './dummystore';
 const NotesContext = React.createContext({
     folders: dummystore.folders,
     notes: dummystore.notes,
-    addBookmark: () => {},
+    deleteNote: () => {},
 })
   
 export default NotesContext

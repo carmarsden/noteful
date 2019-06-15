@@ -13,7 +13,7 @@ class FoldersMain extends React.Component {
         const notedisplay = notearray.map((note, i) => {
             return (
                 <li key={i}>
-                    <NoteEntry note={note}/>
+                    <NoteEntry note={note} />
                 </li>
             )
         })
