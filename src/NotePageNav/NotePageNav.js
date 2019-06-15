@@ -10,8 +10,8 @@ class NotePageNav extends React.Component {
     };
 
     render() {
-        const thisnote = this.context.store.notes.find(note => note.id === this.props.match.params.noteid)
-        const foldername = this.context.store.folders.find(folder => folder.id === thisnote.folderId).name
+        const thisnote = this.context.notes.find(note => note.id === this.props.match.params.noteid)
+        const foldername = this.context.folders.find(folder => folder.id === thisnote.folderId).name
 
         return (
             <nav className='sidebar'>

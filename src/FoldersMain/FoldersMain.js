@@ -8,8 +8,8 @@ class FoldersMain extends React.Component {
 
     render() {
         const notearray = this.props.match.params.folderid 
-            ? this.context.store.notes.filter(note => note.folderId === this.props.match.params.folderid) 
-            : this.context.store.notes
+            ? this.context.notes.filter(note => note.folderId === this.props.match.params.folderid) 
+            : this.context.notes
         const notedisplay = notearray.map((note, i) => {
             return (
                 <li key={i}>

@@ -7,7 +7,7 @@ class FoldersNav extends React.Component {
     static contextType = NotesContext;
 
     render() {
-        const folderarray = this.context.store.folders
+        const folderarray = this.context.folders
         const folderdisplay = folderarray.map((folder, i) => {
             return (
                 <li key={i}>
