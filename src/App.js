@@ -9,6 +9,7 @@ import FoldersMain from './FoldersMain/FoldersMain';
 import NotePageNav from './NotePageNav/NotePageNav';
 import NotePageMain from './NotePageMain/NotePageMain';
 import AddFolder from './AddFolder/AddFolder';
+import AddNote from './AddNote/AddNote';
 
 class App extends React.Component {
     state = {
@@ -68,6 +69,11 @@ class App extends React.Component {
             folders: [...this.state.folders, folder]
         })
     }
+    handleAddNote = (note) => {
+        this.setState({
+            notes: [...this.state.notes, note]
+        })
+    }
 
     render() {
         console.log(this.state)
@@ -76,6 +82,7 @@ class App extends React.Component {
             notes: this.state.notes,
             deleteNote: this.handleDeleteNote,
             addFolder: this.handleAddFolder,
+            addNote: this.handleAddNote,
         }
         const error = this.state.error ? <div className='error'>{this.state.error}</div> : '';
 
@@ -102,6 +109,10 @@ class App extends React.Component {
                                 path='/addfolder'
                                 component={NotePageNav}
                             />
+                            <Route 
+                                path='/addnote'
+                                component={NotePageNav}
+                            />
 
 
                         </>
@@ -121,6 +132,10 @@ class App extends React.Component {
                             <Route 
                                 path='/addfolder'
                                 component={AddFolder}
+                            />
+                            <Route 
+                                path='/addnote'
+                                component={AddNote}
                             />
 
                         </>

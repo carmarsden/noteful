@@ -6,6 +6,11 @@ import NotesContext from '../NotesContext';
 class FoldersMain extends React.Component {
     static contextType = NotesContext;
 
+    onAddNoteClick = () => {
+        this.props.history.push('/addnote')
+    }
+
+
     render() {
         const notearray = this.props.match.params.folderid 
             ? this.context.notes.filter(note => note.folderId === this.props.match.params.folderid) 
@@ -23,7 +28,7 @@ class FoldersMain extends React.Component {
                 <ul>
                     {notedisplay}
                 </ul>
-                <button className='addnote'>Add Note</button>
+                <button className='addnote' onClick={this.onAddNoteClick}>Add Note</button>
             </main>
         );        
     }

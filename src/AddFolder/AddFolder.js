@@ -55,10 +55,6 @@ class AddFolder extends React.Component {
 
     }
 
-    updateFolderName = (foldername) => {
-        this.setState({ foldername })
-    }
-
     render() {
         return (
             <main className='main'>
@@ -67,8 +63,7 @@ class AddFolder extends React.Component {
                     <div>
                         <label htmlFor="foldername">Folder Name: </label>
                         <input type="text" className="addform__input"
-                            name="foldername" id="foldername" required
-                            onChange={e => this.updateFolderName(e.target.value)}/>        
+                            name="foldername" id="foldername" required/>        
                     </div>
                     <div>
                         <button type="submit" className="addform__button">Submit</button>
