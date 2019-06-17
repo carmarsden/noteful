@@ -6,6 +6,10 @@ import NotesContext from '../NotesContext';
 class AddFolder extends React.Component {
     static contextType = NotesContext;
 
+    state = {
+        error: null
+    }
+
     handleSubmit = (event) => {
         event.preventDefault();
         const foldername = event.target['foldername'].value;
@@ -50,12 +54,17 @@ class AddFolder extends React.Component {
             });
         })
         .catch(err => {
-            console.log(err.message);
+            this.setState({
+                error: err.message
+            });
         });
-
     }
 
     render() {
+        const error = this.state.error 
+        ? (<div className='fetcherror'>Oh no, there was an error: {this.state.error}</div>)
+        : '';
+
         return (
             <main className='main'>
                 <h2>Create a New Folder</h2>
@@ -69,6 +78,7 @@ class AddFolder extends React.Component {
                         <button type="submit" className="addform__button">Submit</button>
                     </div>
                 </form>
+                {error}
             </main>
         )
     }

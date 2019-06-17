@@ -84,7 +84,11 @@ class App extends React.Component {
             addFolder: this.handleAddFolder,
             addNote: this.handleAddNote,
         }
-        const error = this.state.error ? <div className='error'>{this.state.error}</div> : '';
+        const error = this.state.error 
+        ? (<div className='fetcherror'>{this.state.error}
+        <p>This data may be "dummy" data, please ensure you are connected to the Noteful local server and refresh the page</p>
+        </div>)
+        : '';
 
         return (
             <div className="App">

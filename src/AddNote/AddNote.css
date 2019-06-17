@@ -1,0 +1,36 @@
+.validationerror {
+    display: inline-block;
+    margin: 0 10px;
+    color: #700000;
+}
+
+.addform label {
+    display: block;
+}
+
+.fetcherror {
+    margin: 10px;
+    color: #700000;
+}
+
+.fetcherror::before {
+    content: 'Oh no, there was an error: '
+}
+
+
+/** play with putting the validation message above the input? set opacity to 0 except when visible or something, add & remove class based on whether string has length?
+.validationerror {
+    background-color: #700000;
+    border-radius: 3px;
+    color: #fff;
+    left: 4vw;
+    margin-bottom: 5px;
+    margin-left: -8vw;
+    min-width: 160px;
+    padding: 7px 10px;
+    position: relative;
+    text-align: center;
+    top: calc(-1.2em - 14px);
+    white-space: nowrap;
+}
+*/
