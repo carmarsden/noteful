@@ -2,7 +2,7 @@ export default {
     "folders": [
       {
         "id": "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1",
-        "name": "Important Folder from Context"
+        "name": "Important"
       },
       {
         "id": "b07161a6-ffaf-11e8-8eb2-f2801f1b9fd1",

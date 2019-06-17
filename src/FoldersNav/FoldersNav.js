@@ -6,6 +6,10 @@ import NotesContext from '../NotesContext';
 class FoldersNav extends React.Component {
     static contextType = NotesContext;
 
+    onAddFolderClick = () => {
+        this.props.history.push('/addfolder')
+    }
+
     render() {
         const folderarray = this.context.folders
         const folderdisplay = folderarray.map((folder, i) => {
@@ -21,7 +25,7 @@ class FoldersNav extends React.Component {
                 <ul>
                     {folderdisplay}
                 </ul>
-                <button className='addfolder'>Add Folder</button>
+                <button className='addfolder' onClick={this.onAddFolderClick}>Add Folder</button>
             </nav>
         );        
     }

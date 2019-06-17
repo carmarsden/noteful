@@ -2,18 +2,18 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import dummystore from './dummystore';
-import dummystore2 from './dummystore2';
 import NotesContext from './NotesContext';
 import Header from './Header/Header';
 import FoldersNav from './FoldersNav/FoldersNav';
 import FoldersMain from './FoldersMain/FoldersMain';
 import NotePageNav from './NotePageNav/NotePageNav';
 import NotePageMain from './NotePageMain/NotePageMain';
+import AddFolder from './AddFolder/AddFolder';
 
 class App extends React.Component {
     state = {
-        folders: dummystore2.folders,
-        notes: dummystore2.notes,
+        folders: dummystore.folders,
+        notes: dummystore.notes,
         error: null,
     }
 
@@ -63,12 +63,19 @@ class App extends React.Component {
         })
     }
 
+    handleAddFolder = (folder) => {
+        this.setState({
+            folders: [...this.state.folders, folder]
+        })
+    }
+
     render() {
         console.log(this.state)
         const contextValue = {
             folders: this.state.folders,
             notes: this.state.notes,
             deleteNote: this.handleDeleteNote,
+            addFolder: this.handleAddFolder,
         }
         const error = this.state.error ? <div className='error'>{this.state.error}</div> : '';
 
@@ -91,6 +98,11 @@ class App extends React.Component {
                                 path='/note/:noteid'
                                 component={NotePageNav}
                             />
+                            <Route 
+                                path='/addfolder'
+                                component={NotePageNav}
+                            />
+
 
                         </>
                         <>
@@ -105,6 +117,10 @@ class App extends React.Component {
                             <Route 
                                 path='/note/:noteid'
                                 component={NotePageMain}
+                            />
+                            <Route 
+                                path='/addfolder'
+                                component={AddFolder}
                             />
 
                         </>

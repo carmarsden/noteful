@@ -9,14 +9,24 @@ class NotePageNav extends React.Component {
         this.props.history.goBack()
     };
 
-    render() {
-        const thisnote = this.context.notes.find(note => note.id === this.props.match.params.noteid)
-        const foldername = this.context.folders.find(folder => folder.id === thisnote.folderId).name
+    findFolderName = () => {
+        if (this.props.match.params.noteid) {
+            const thisnote = this.context.notes.find(note => note.id === this.props.match.params.noteid)
+            const foldername = this.context.folders.find(folder => folder.id === thisnote.folderId).name
+            return (
+                <h2>{foldername}</h2>
+            )
+        }
+        return ('')
+    }
 
+    render() {
+        const navdisplay = this.findFolderName()
+        
         return (
             <nav className='sidebar'>
                 <button onClick={this.handleGoBack} className='backbutton'>Go back</button>
-                <h2>{foldername}</h2>
+                {navdisplay}
             </nav>
         );        
     }
