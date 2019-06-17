@@ -10,6 +10,7 @@ import NotePageNav from './NotePageNav/NotePageNav';
 import NotePageMain from './NotePageMain/NotePageMain';
 import AddFolder from './AddFolder/AddFolder';
 import AddNote from './AddNote/AddNote';
+import ErrorBoundary from './ErrorBoundaries/ErrorBoundary';
 
 class App extends React.Component {
     state = {
@@ -88,7 +89,7 @@ class App extends React.Component {
                 {error}
                 <NotesContext.Provider value={contextValue}>
                     <div className='appbody'>
-                        <>
+                        <ErrorBoundary appSection='navigation section'>
                             <Route 
                                 exact path='/'
                                 component={FoldersNav}
@@ -109,10 +110,9 @@ class App extends React.Component {
                                 path='/addnote'
                                 component={NotePageNav}
                             />
+                        </ErrorBoundary>
 
-
-                        </>
-                        <>
+                        <ErrorBoundary appSection='main section'>
                             <Route 
                                 exact path='/'
                                 component={FoldersMain}
@@ -133,8 +133,7 @@ class App extends React.Component {
                                 path='/addnote'
                                 component={AddNote}
                             />
-
-                        </>
+                        </ErrorBoundary>
                     </div>
                 </NotesContext.Provider>
             </div>
