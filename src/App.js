@@ -19,34 +19,26 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:9090/folders')
-        .then(res => {
-            if(!res.ok) {
+        Promise.all([
+            fetch('http://localhost:9090/folders'),
+            fetch('http://localhost:9090/notes')            
+        ])
+        .then(([resFolders, resNotes]) => {
+            if(!resFolders.ok) {
                 throw new Error('Something went wrong retrieving your folders, please try again later');
             }
-            return res.json();
-        })
-        .then(resJson => {
-            this.setState({
-                folders: resJson
-            })
-        })
-        .catch(err => {
-            this.setState({
-                error: err.message
-            });
-        });
-
-        fetch('http://localhost:9090/notes')
-        .then(res => {
-            if(!res.ok) {
+            if(!resNotes.ok) {
                 throw new Error('Something went wrong retrieving your notes, please try again later');
             }
-            return res.json();
+            return Promise.all([
+                resFolders.json(),
+                resNotes.json(),
+            ]);
         })
-        .then(resJson => {
+        .then(([foldersJson, notesJson]) => {
             this.setState({
-                notes: resJson
+                folders: foldersJson,
+                notes: notesJson
             })
         })
         .catch(err => {
