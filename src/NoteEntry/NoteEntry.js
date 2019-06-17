@@ -1,11 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './NoteEntry.css';
 import NotesContext from '../NotesContext';
 
 
 class NoteEntry extends React.Component {
     static contextType = NotesContext;
+    static propTypes = {
+        onDeleteRedirect: PropTypes.func,
+        note: PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            modified: PropTypes.string.isRequired,
+            folderId: PropTypes.string.isRequired,
+            content: PropTypes.string.isRequired    
+        })
+    }
 
     deleteNote(noteId) {
         const options = {

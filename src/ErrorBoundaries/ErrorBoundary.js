@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class ErrorBoundary extends Component {
     state = {
         hasError: false
+    }
+
+    static propTypes = {
+        appSection: PropTypes.string.isRequired
     }
 
     static getDerivedStateFromError(error) {
