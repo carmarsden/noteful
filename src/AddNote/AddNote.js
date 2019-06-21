@@ -150,9 +150,10 @@ class AddNote extends React.Component {
                     <div>
                         <label htmlFor="notename">* Note Name: </label>
                         <input type="text" className="addform__input"
-                            name="notename" id="notename" required
+                            name="notename" id="notename" aria-describedby="valerr-name"
+                            aria-required="true" required
                             onChange={e => this.updateNoteName(e.target.value)}/>
-                        <span className="validationerror">{this.state.validationMessages.name}</span>
+                        <span className="validationerror" id="valerr-name">{this.state.validationMessages.name}</span>
                     </div>
                     <div>
                         <label htmlFor="notecontent">Note Content: </label>
@@ -163,12 +164,13 @@ class AddNote extends React.Component {
                     <div>
                         <label htmlFor="folderselect">* Folder: </label>
                         <select className="addform__select"
-                            name="folderselect" id="folderselect"
+                            name="folderselect" id="folderselect" aria-describedby="valerr-folder"
+                            aria-required="true" required
                             onChange={e => this.updateFolderSelect(e.target.value)}>
                             <option value=''>--Please choose a folder--</option>
                             {folderoptions}
                         </select>
-                        <span className="validationerror">{this.state.validationMessages.folderId}</span>
+                        <span className="validationerror" id="valerr-folder">{this.state.validationMessages.folderId}</span>
                     </div>
                     <div>
                         <button type="submit" className="addform__button" disabled={!this.state.formValid}>Submit</button>
