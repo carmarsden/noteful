@@ -11,7 +11,7 @@ class NotePageMain extends React.Component {
     }
 
     render() {
-        const thisnote = this.context.notes.find(note => note.id === this.props.match.params.noteid) 
+        const thisnote = this.context.notes.find(note => note.id === Number(this.props.match.params.noteid)) 
 
         return (
             <main className='main'>

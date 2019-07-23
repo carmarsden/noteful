@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import dummystore from './dummystore';
+import config from './config';
 import NotesContext from './NotesContext';
 import Header from './Header/Header';
 import FoldersNav from './FoldersNav/FoldersNav';
@@ -20,9 +21,17 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        const options = {
+            method: 'GET',
+            headers: {
+              'content-type': 'application/json',
+              'Authorization': `Bearer ${config.API_KEY}`
+            }
+        }
+
         Promise.all([
-            fetch('http://localhost:9090/folders'),
-            fetch('http://localhost:9090/notes')            
+            fetch(`${config.API_SERVER}/api/folders`, options),
+            fetch(`${config.API_SERVER}/api/notes`, options)            
         ])
         .then(([resFolders, resNotes]) => {
             if(!resFolders.ok) {

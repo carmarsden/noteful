@@ -1,4 +1,5 @@
 import React from 'react';
+import config from '../config';
 import './AddNote.css';
 import NotesContext from '../NotesContext';
 
@@ -24,25 +25,33 @@ class AddNote extends React.Component {
         event.preventDefault();
         const now = new Date().toJSON();
         const noteobj = {
-            name: this.state.name,
-            modified: now,
-            folderId: this.state.folderId,
+            note_name: this.state.name,
             content: this.state.content,    
+            fol_id: this.state.folderId,
+            date_modified: now,
         };
 
         console.log("you're trying to add a new note! it looks like this:");
         console.log(noteobj);
 
         
-        const options = {
+        const postOptions = {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${config.API_KEY}`
             },
             body: JSON.stringify(noteobj),
         }
+        const getOptions = {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${config.API_KEY}`
+            }
+        }
 
-        fetch(`http://localhost:9090/notes`, options)
+        fetch(`${config.API_SERVER}/api/notes`, postOptions)
         .then(res => {
             if(!res.ok) {
                 throw new Error('Something went wrong adding your note, please try again later');
@@ -52,7 +61,7 @@ class AddNote extends React.Component {
         .then(() => {
             console.log(`you posted a new note!`);
 
-            fetch('http://localhost:9090/notes')
+            fetch(`${config.API_SERVER}/api/notes`, getOptions)
             .then(res => {
                 if(!res.ok) {
                     throw new Error('Something went wrong retrieving your new note, please try refreshing the page');
@@ -60,7 +69,7 @@ class AddNote extends React.Component {
                 return res.json();
             })
             .then(resJson => {
-                const fullnoteobj = resJson.find(note => note.name === noteobj.name)
+                const fullnoteobj = resJson.find(note => note.note_name === noteobj.note_name)
                 this.context.addNote(fullnoteobj)
                 this.props.history.push(`/note/${fullnoteobj.id}`)
             })
@@ -134,7 +143,7 @@ class AddNote extends React.Component {
         const folderarray = this.context.folders
         const folderoptions = folderarray.map((folder, i) => {
             return (
-                <option value={folder.id} key={i}>{folder.name}</option>
+                <option value={folder.id} key={i}>{folder.fol_name}</option>
             )
         })
 

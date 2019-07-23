@@ -15,7 +15,7 @@ class FoldersNav extends React.Component {
         const folderdisplay = folderarray.map((folder, i) => {
             return (
                 <li key={i}>
-                    <NavLink to={`/folder/${folder.id}`} className='sidebaritem'>{folder.name}</NavLink>
+                    <NavLink to={`/folder/${folder.id}`} className='sidebaritem'>{folder.fol_name}</NavLink>
                 </li>
             )
         })

@@ -11,8 +11,8 @@ class NotePageNav extends React.Component {
 
     findFolderName = () => {
         if (this.props.match.params.noteid) {
-            const thisnote = this.context.notes.find(note => note.id === this.props.match.params.noteid)
-            const foldername = this.context.folders.find(folder => folder.id === thisnote.folderId).name
+            const thisnote = this.context.notes.find(note => note.id === Number(this.props.match.params.noteid));
+            const foldername = this.context.folders.find(folder => folder.id === thisnote.fol_id).fol_name;
             return (
                 <h2>{foldername}</h2>
             )

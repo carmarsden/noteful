@@ -18,7 +18,9 @@
 }
 
 
-/** play with putting the validation message above the input? set opacity to 0 except when visible or something, add & remove class based on whether string has length?
+/** play with putting the validation message above the input? 
+set opacity to 0 except when visible or something, add & remove class based on whether string has length?
+See also: http://www.oaa-accessibility.org/examplep/tooltip1/
 .validationerror {
     background-color: #700000;
     border-radius: 3px;
