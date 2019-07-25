@@ -1,0 +1,15 @@
+{
+    "version": 1,
+    "name": "noteful-app",
+    "alias": "carmarsden-noteful-app",
+    "routes": [
+        {
+          "src": "^/static/(.*)",
+          "dest": "/static/$1"
+        },
+        {
+          "src": ".*",
+          "dest": "/index.html"
+        }
+    ]
+}
