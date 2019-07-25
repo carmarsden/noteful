@@ -78,7 +78,6 @@ class App extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         const contextValue = {
             folders: this.state.folders,
             notes: this.state.notes,
